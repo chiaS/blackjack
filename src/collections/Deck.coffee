@@ -7,7 +7,7 @@ class window.Deck extends Backbone.Collection
         rank: card % 13
         suit: Math.floor(card / 13)
 
-    @.on 'reveal', () -> alert('test')
+   # @dealPlayer.on 'add', () -> alert('from deck')
     return
 
   dealPlayer: -> new Hand [@pop(), @pop()], @

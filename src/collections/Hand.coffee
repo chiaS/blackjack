@@ -2,7 +2,7 @@ class window.Hand extends Backbone.Collection
   model: Card
 
   initialize: (array, @deck, @isDealer) ->
-  #  @.on 'reveal', @scores, @
+    #@on 'reveal', ()->alert 'i hope reveal can be caught by other objs...'
     return
 
   hit: ->
@@ -27,21 +27,20 @@ class window.Hand extends Backbone.Collection
 
   stand: ->
     #disable hit button
-    $(".hit-button, .stand-button").attr('disabled', true);
-    #@trigger 'reveal', @
-    
+    @trigger 'reveal', @
 
-  flipFirst: -> 
-    @at(0).flip()
+
+  flipFirst: ->
+    @at(0).set 'revealed', false
     console.log @at(0)
 
-  finalScore: -> 
+  finalScore: ->
     scores = @scores()
     max = Math.max(scores[0], scores[1])
     min = Math.min(scores[0], scores[1])
     if max > 21
       return min
     if max <= 21
-      return max  
+      return max
 
 
