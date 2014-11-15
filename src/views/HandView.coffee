@@ -1,4 +1,5 @@
 class window.HandView extends Backbone.View
+  #@collection = App.playerHand or App.dealerHand
   className: 'hand'
 
   template: _.template '<h2><% if(isDealer){ %>Dealer<% }else{ %>You<% } %> (<span class="score"></span>)</h2>'
