@@ -11,6 +11,3 @@ class window.CardView extends Backbone.View
     @$el.html @template @model.attributes
     @$el.addClass 'covered' unless @model.get 'revealed'
 
-  #toggleClass: -> alert 'toggle'
-  #  @model.set 'revealed', false
-   # @$el.removeClass 'covered'

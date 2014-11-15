@@ -2,7 +2,7 @@ class window.Hand extends Backbone.Collection
   model: Card
 
   initialize: (array, @deck, @isDealer) ->
-    @.on 'reveal', () -> alert('test')
+  #  @.on 'reveal', @scores, @
     return
 
   hit: ->
@@ -24,12 +24,24 @@ class window.Hand extends Backbone.Collection
     # when there is an ace, it offers you two scores - the original score, and score + 10.
     [@minScore(), @minScore() + 10 * @hasAce()]
 
+
   stand: ->
     #disable hit button
-    $(".hit-button").attr('disabled', true);
-    #call dealer hand
-    @trigger 'reveal', @
-    return
+    $(".hit-button, .stand-button").attr('disabled', true);
+    #@trigger 'reveal', @
+    
 
+  flipFirst: -> 
+    @at(0).flip()
+    console.log @at(0)
+
+  finalScore: -> 
+    scores = @scores()
+    max = Math.max(scores[0], scores[1])
+    min = Math.min(scores[0], scores[1])
+    if max > 21
+      return min
+    if max <= 21
+      return max  
 
 

@@ -7,9 +7,6 @@ class window.App extends Backbone.Model
     @set 'deck', deck = new Deck()
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
-
-    #@collection = @get 'dealerHand'
-    @.on 'all', (card) -> alert('received reveal event')
     return
 
 
