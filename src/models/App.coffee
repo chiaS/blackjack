@@ -8,7 +8,19 @@ class window.App extends Backbone.Model
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
 
-    (@get 'dealerHand').on 'reveal', (@get 'dealerHand').flipFirst, @get 'dealerHand'
-    return
+    self = @
+    (@get 'dealerHand').on 'reveal', ()->
+        (self.get 'dealerHand').flipFirst()
+        self.annouceResult()
+        return
+
+
+  annouceResult: ->
+    if @get("dealerHand").finalScore() < 22 and @get("dealerHand").finalScore() > @get("playerHand").finalScore()
+      alert 'You Lost'
+    else
+      alert 'You Win'
+
+
 
 

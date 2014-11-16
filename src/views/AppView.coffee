@@ -16,7 +16,7 @@ class window.AppView extends Backbone.View
         @model.get('dealerHand').stand()
         @dealerPlay()
       #  console.log @model.get("dealerHand").finalScore()+' vs '+ @model.get("playerHand").finalScore()
-        @announceResult()
+      #  @announceResult()
         return
 
 
@@ -35,8 +35,4 @@ class window.AppView extends Backbone.View
        @model.get('dealerHand').hit()
     return
 
-  annouceResult: ->
-    if @model.get("dealerHand").finalScore() < 22 and @model.get("dealerHand").finalScore() > @model.get("playerHand").finalScore()
-      alert 'You Lost'
-    else
-      alert 'You Win'
+

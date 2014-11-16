@@ -31,7 +31,9 @@ class window.Hand extends Backbone.Collection
 
 
   flipFirst: ->
+    console.log @at(0)
     @at(0).set 'revealed', false
+    @at(0).flip()
     console.log @at(0)
 
   finalScore: ->
