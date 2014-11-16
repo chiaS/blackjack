@@ -6,8 +6,6 @@ class window.HandView extends Backbone.View
 
   initialize: ->
     @collection.on 'reveal add remove change', => @render()
-    @collection.on 'reveal', () -> $(".hit-button, .stand-button").attr('disabled', true);
-
     @render()
 
   render: ->

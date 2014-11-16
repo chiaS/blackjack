@@ -3,7 +3,7 @@ class window.Hand extends Backbone.Collection
 
   initialize: (array, @deck, @isDealer) ->
     #@on 'reveal', ()->alert 'i hope reveal can be caught by other objs...'
-    return
+    
 
   hit: ->
     card = @deck.pop()
@@ -24,17 +24,14 @@ class window.Hand extends Backbone.Collection
     # when there is an ace, it offers you two scores - the original score, and score + 10.
     [@minScore(), @minScore() + 10 * @hasAce()]
 
-
   stand: ->
     #disable hit button
     @trigger 'reveal', @
 
-
   flipFirst: ->
-    console.log @at(0)
+    console.log 'dealer?' + @isDealer
     @at(0).set 'revealed', false
     @at(0).flip()
-    console.log @at(0)
 
   finalScore: ->
     scores = @scores()
@@ -45,4 +42,4 @@ class window.Hand extends Backbone.Collection
     if max <= 21
       return max
 
-
+  
