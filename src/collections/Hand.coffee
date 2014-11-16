@@ -8,7 +8,7 @@ class window.Hand extends Backbone.Collection
   hit: ->
     card = @deck.pop()
     @add(card)
-    card.value
+ #   card.value
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1

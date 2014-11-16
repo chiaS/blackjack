@@ -1,14 +1,18 @@
 class window.AppView extends Backbone.View
   #model: @model = App
+  className: 'app-view'
+
   template: _.template '
-    <button class="hit-button">Hit</button> <button class="stand-button">Stand</button>
-    <button class="restart">Restart</button>
+    <section class="scoreSection"></section>
     <div class="dealer-hand-container"></div>
     <div class="player-hand-container"></div>
-    <section class="scoreSection"></section>'
+    <button class="restart">Restart</button>
+    <button class="hit-button">Hit</button>
+    <button class="stand-button">Stand</button>'
 
   events:
     'click .hit-button':() ->
+        @playerPlay()
         @model.get('playerHand').hit()
         @playerPlay()
     'click .stand-button': () -> 
@@ -35,12 +39,13 @@ class window.AppView extends Backbone.View
       
     
   dealerPlay: ->
-    while  @model.get('dealerHand').scores()[0]<17 and  @model.get('dealerHand').scores()[1] < 17
+    while @model.get('dealerHand').scores()[0]<17 and @model.get('dealerHand').scores()[1] < 17
       @model.get('dealerHand').hit()
-    return
+    #emit reveal:dealer when dealer is finished 
+    @model.get('dealerHand').trigger 'reveal:dealer'
 
   playerPlay: ->
-     if @model.get("playerHand").finalScore() > 21
-       @scoreView.findResult()
+     if @model.get("playerHand").finalScore() >= 21 
+       @scoreView.earlyResult()
      return  
 

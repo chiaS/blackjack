@@ -3,7 +3,7 @@ class window.ScoreView extends Backbone.View
   
   initialize: -> 
   	@render()
-  	@listenTo (@model.get 'dealerHand'), 'reveal', @findResult
+  	@listenTo (@model.get 'dealerHand'), 'reveal:dealer', @findResult
 
   render: -> 
   	@$el.children().detach()
@@ -11,11 +11,19 @@ class window.ScoreView extends Backbone.View
   	@$('.result').text(@score)
   
   findResult: ->
-  	playerScore = @model.get("playerHand").finalScore()
-  	dealerScore = @model.get("dealerHand").finalScore()
-  	if playerScore > 21 or (dealerScore < 22 and dealerScore > playerScore)
-      @score = 'You Lost' 
-    else
-      @score = 'You Won' 
     $(".hit-button, .stand-button").attr('disabled', true); 
+    playerScore = @model.get("playerHand").finalScore()
+    dealerScore = @model.get("dealerHand").finalScore()
+    console.log 'dealer:'+dealerScore+' vs player: '+playerScore
+    if dealerScore == 21 or playerScore > 21 or (dealerScore < 22 and dealerScore > playerScore)
+      @score = 'You Lost' 
+    else @score = 'You Won'     
+    @score = 'PUSH' if playerScore == dealerScore
+    @render()
+
+  earlyResult: ->
+    $(".hit-button, .stand-button").attr('disabled', true); 
+    playerScore = @model.get("playerHand").finalScore()
+    @score = 'You Lost' if playerScore > 21
+    @score = 'You Won' if playerScore == 21
     @render()

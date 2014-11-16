@@ -1,9 +1,28 @@
-body{
-  background-color: gold;
+body, html{
+  background-color: #0D7421;
+  box-shadow: inset 0px 0px 50px 12px rgb(17, 16, 16);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color:#fff;
+}
+button{
+  border: 0;
+  font-size: 110%;
+  color: #266D08;
+  border-radius: 4px;
+  box-shadow: 0px 4px 5px #240000;
+  background: rgb(240, 243,243);
+  cursor: pointer;
+  margin: 2em 1em;
+  width: 5em;
+}
+button:disabled{
+  box-shadow: inset 0px 0px 5px #240000;
+  
 }
 .card {
   float: left;
-//  border: solid 1px black;
   width: 121px;
   border-radius: 5px;
   height: 168px;
@@ -17,5 +36,24 @@ body{
 }
 
 .hand {
+  margin: 1.5em auto;
   overflow: auto;
+}
+
+.app-view {
+  text-align: center;
+  margin: 0 auto;
+  width: 60%;
+  padding-top: 4em;
+}
+
+.scoreSection{
+  height: 100px;
+}
+
+.result{
+  color: red;
+  font-weight: bold;
+  font-size: 3em;
+  text-shadow: 2px 2px #2A2020;
 }
